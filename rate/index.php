@@ -6,11 +6,26 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <script>
+function firstTime(){
+  // alert("test");
+  xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+      // get response
+      // myJson = JSON.parse(xmlhttp.responseText);
+
+      document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+    }
+  }
+  xmlhttp.open("GET","dbInter.php?q=9",true);
+  xmlhttp.send();
+
+}
 function sendData(str) {
   if (str=="") {
     document.getElementById("txtHint").innerHTML="";
     return;
-  } 
+  }
   if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
@@ -30,7 +45,7 @@ function sendData(str) {
 }
 </script>
 </head>
-<body>
+<body onload = "firstTime()">
 <div class="container">
 
 <br>
