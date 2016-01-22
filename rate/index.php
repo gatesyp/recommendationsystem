@@ -6,20 +6,19 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
 <script>
+function getID(){
+  // facebook operation to get their profile id
+  // return id;
+}
 function firstTime(){
-  // alert("test");
   xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function() {
     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-      // get response
-      // myJson = JSON.parse(xmlhttp.responseText);
-
       document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
     }
   }
   xmlhttp.open("GET","dbInter.php?q=9",true);
   xmlhttp.send();
-
 }
 function sendData(str) {
   if (str=="") {
@@ -34,11 +33,10 @@ function sendData(str) {
   }
   xmlhttp.onreadystatechange=function() {
     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-    	// get response
-    	myJson = JSON.parse(xmlhttp.responseText);
-
-      document.getElementById("txtHint").innerHTML=myJson['image'];
-    }
+// get the response which will just be a plain URL, construct the img tag for it and display it to "txtHint"
+// that saved image url will go back to GET parameters under key "url" for DB use
+      document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+          }
   }
   xmlhttp.open("GET","dbInter.php?q="+str,true);
   xmlhttp.send();
