@@ -72,7 +72,7 @@ if(isset($_POST["url"]) && !empty($_POST["url"])){
 
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-              <input id="url" type="text" class="form-control" name="url" value="" placeholder="URL">
+              <input id="url" type="url" class="form-control" name="url" value="" placeholder="URL">
             </div>
 
             <div class="form-group">
