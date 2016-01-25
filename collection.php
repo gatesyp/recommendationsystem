@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <?php
-  require '/rate/dbConnect.php';
-  if(isset($_POST["url"]) && !empty($_POST["url"])){
-    // echo $_POST["url"];
-    $sql = "INSERT INTO pictures(url, user_handle) VALUES('" . $_POST["url"] . "', '" . $_POST["user"] . "')";
-    if($result = $conn -> query($sql)){
-      return true;
-    }
+require '/rate/dbConnect.php';
+if(isset($_POST["url"]) && !empty($_POST["url"])){
+  // echo $_POST["url"];
+  $sql = "INSERT INTO pictures(url, user_handle) VALUES('" . $_POST["url"] . "', '" . $_POST["user"] . "')";
+  if($result = $conn -> query($sql)){
+    return true;
+    echo "<script>window.location = 'collection.php'</script>";
   }
- ?>
+}
+?>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -16,7 +17,29 @@
   <script type="text/javascript" src="collection_scripts/animation.js"></script>
   <link rel="stylesheet" type="text/css" href="collection_scripts/mystyle.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="http://malsup.github.com/jquery.form.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <script>
+  $("document").ready(function(){
+    $("#form").submit(function(e) {
+
+      var url = "collection.php"; //e script where you handle the form input.
+
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: $("#form").serialize(), // serializes the form's elements.
+        success: function(data)
+        {
+          // alert(data); // show response from the php script.
+        }
+      });
+      $('#url').val("");
+
+      e.preventDefault(); // avoid to execute the actual submit of the form.
+    });
+  });
+  </script>
 </head>
 <body>
   <div class="container">
@@ -57,13 +80,13 @@
               <div class="col-sm-12 controls">
                 <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Submit</button>
               </div>
-            <div class="text-center">
-              <b>INSTRUCTIONS </b> <br>
+              <div class="text-center">
+                <b>INSTRUCTIONS </b> <br>
                 Enter your name so I can track who gives which suggestions! <br>
                 Go to images.google.com. Search for a generic clothing term (eg: shirts). <br>
                 In <b>"search options"</b>, select <b>"size"</b> and then select <b>"medium"</b>. <br>
                 Select "view image" and copy/paste the <b>source</b> URL to this page.
-             </div>
+              </div>
             </div>
 
           </form>
