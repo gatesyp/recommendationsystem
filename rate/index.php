@@ -7,20 +7,18 @@
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript">
   $("document").ready(function(){
-    $(".js-ajax-php-json").submit(function(){
+    $(".myButton").click(function(){
       var data = {
         "action": "test"
       };
-      data = $(this).serialize() + "&" + $.param(data);
+      data = "response=" + $(this).attr("value") + "&" + $.param(data) + "&url=" + $("#my_image").attr("src");
       $.ajax({
         type: "POST",
         dataType: "json",
         url: "dbInter.php", //Relative or absolute path to response.php file
         data: data,
         success: function(data) {
-          $(".the-return").html(
-            "Favorite beverage: " + data["favorite_beverage"] + "<br />Favorite restaurant: " + data["favorite_restaurant"] + "<br />Gender: " + data["gender"] + "<br />JSON: " + data["json"]
-          );
+          $("#my_image").attr("src",data["url"]);
           alert("Form submitted successfully.\nReturned json: " + data["json"]);
         }
       });
@@ -30,17 +28,10 @@
   </script>
 </head>
 <body>
-  <form action="return.php" class="js-ajax-php-json" method="post" accept-charset="utf-8">
-    <input type="text" name="favorite_beverage" value="" placeholder="Favorite restaurant" />
-    <input type="text" name="favorite_restaurant" value="" placeholder="Favorite beverage" />
-    <select name="gender">
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-    </select>
-    <input type="submit" name="submit" value="Submit form" />
-  </form>
+    <button  name="response" value="1"" type="submit" class="myButton">Like</button>
+    <button  name="response" value="0" type="submit" class="myButton">Dislike</button>
   <div class="the-return">
-    [HTML is replaced when successful.]
+  <img id="my_image" src="https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg"/>
   </div>
 </body>
 </html>
