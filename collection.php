@@ -12,7 +12,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="collection_scripts/animation.js"></script>
   <link rel="stylesheet" type="text/css" href="collection_scripts/mystyle.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,7 @@
 
       <div class="panel panel-default" >
         <div class="panel-heading">
-          <div class="panel-title text-center">Bootsnipp.com</div>
+          <div class="panel-title text-center">Fashion Data Gathering</div>
         </div>
 
         <div class="panel-body" >
@@ -57,6 +57,13 @@
               <div class="col-sm-12 controls">
                 <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Submit</button>
               </div>
+            <div class="text-center">
+              <b>INSTRUCTIONS </b> <br>
+                Enter your name so I can track who gives which suggestions! <br>
+                Go to images.google.com. Search for a generic clothing term (eg: shirts). <br>
+                In <b>"search options"</b>, select <b>"size"</b> and then select <b>"medium"</b>. <br>
+                Select "view image" and copy/paste the <b>source</b> URL to this page.
+             </div>
             </div>
 
           </form>
