@@ -13,42 +13,31 @@ if (is_ajax()) {
 function is_ajax() {
   return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
-// test_function();
-
 function main(){
   $return = $_POST;
-  // $return = array("response"=>"Like", "url"=>"https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg");
   $success;
   if ($return["response"] == "1"){
-    $success = insertResponse("1523412364", "1", $return["url"]);
+    $success = insertResponse($return["profileID"], "1", $return["url"]);
   } else{
-    $success = insertResponse("1523412364", "0", $return["url"]);
+    $success = insertResponse($return["profileID"], "0", $return["url"]);
   }
     $return["url"] = giveResponse();
-  // var_dump($return);
   $return["json"] = json_encode($return);
   echo json_encode($return);
 }
-// insertResponse("asdasd", 0, "zxcv");
 function insertResponse($profile, $response, $url){
   global $conn;
   $id;
   $sql = "SELECT id FROM pictures WHERE url = '" . $url . "'";
-  // var_dump($sql);
   if($result = $conn -> query($sql)){
     while($row = $result -> fetch_object()){
       $id = $row -> id;
     }
   }
-//  var_dump($id);
-  $sql = "INSERT INTO profile_data(profile, url, response) VALUES(123123," . $id . ", " . $response . ")";
+  $sql = "INSERT INTO profile_data(profile, url, response) VALUES('" . $profile . "'," . $id . ", " . $response . ")";
   if($result = $conn -> query($sql)){
     return true;
   }
-  // var_dump($sql);
-
-  // return false;
-
 }
 function getRange(){
   global $conn;
@@ -67,8 +56,6 @@ function getRange(){
 }
 return $array;
 }
-// var_dump(getRange());
-// var_dump(giveResponse());
 function giveResponse(){
   global $conn;
   $url;
