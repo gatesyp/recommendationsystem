@@ -9,7 +9,7 @@
   $("document").ready(function(){
     $(".myButton").click(function(){
       var data = {
-        "action": "test"
+        "action": "rating"
       };
       FB.api('/me', function(response) {
         data = "response=" + $(this).attr("value") + "&" + $.param(data) + "&url=" + $("#my_image").attr("src") + "&profileID=" + response.id;
