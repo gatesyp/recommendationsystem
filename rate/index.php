@@ -11,7 +11,9 @@
       var data = {
         "action": "test"
       };
-      data = "response=" + $(this).attr("value") + "&" + $.param(data) + "&url=" + $("#my_image").attr("src");
+      data = "response=" + $(this).attr("value") + "&" + $.param(data) + "&url=" + $("#my_image").attr("src") + "&profileID=" + FB.getLoginStatus(function(response) {
+        response.authResponse.userID;
+});;
       $.ajax({
         type: "POST",
         dataType: "json",
@@ -19,7 +21,7 @@
         data: data,
         success: function(data) {
           $("#my_image").attr("src",data["url"]);
-          alert("Form submitted successfully.\nReturned json: " + data["json"]);
+           alert("Form submitted successfully.\nReturned json: " + data["json"]);
         }
       });
       return false;
@@ -63,7 +65,7 @@
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '{469894839866750',
+    appId      : '469894839866750',
     cookie     : true,  // enable cookies to allow the server to access
                         // the session
     xfbml      : true,  // parse social plugins on this page
