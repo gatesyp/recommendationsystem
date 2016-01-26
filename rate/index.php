@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script type="text/javascript">
   $("document").ready(function(){
     $(".myButton").click(function(){
       var data = {
-        "action": "rating"
+        "action": "rating",
+        "response" : $(this).attr("value")
       };
       FB.api('/me', function(response) {
-        data = "response=" + $(this).attr("value") + "&" + $.param(data) + "&url=" + $("#my_image").attr("src") + "&profileID=" + response.id;
+        data = "&" + $.param(data) + "&url=" + $("#my_image").attr("src") + "&profileID=" + response.id;
         $.ajax({
           type: "POST",
           dataType: "json",
@@ -72,8 +73,8 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-      'Thanks for logging in, ' + response.name + '!';
+      // document.getElementById('status').innerHTML =
+      // 'Thanks for logging in, ' + response.name + '!';
     });
   }
   </script>
